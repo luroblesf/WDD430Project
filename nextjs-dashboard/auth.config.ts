@@ -1,5 +1,4 @@
 import type { NextAuthConfig } from 'next-auth';
-import { NextResponse } from 'next/server';
 
 export const authConfig = {
     pages: {
@@ -11,10 +10,12 @@ export const authConfig = {
             const isLoggedIn = !!auth?.user;
             const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
 
+            // ❌ si no está logueado y quiere dashboard
             if (isOnDashboard) {
                 return isLoggedIn;
             }
 
+            // ❌ NUNCA redirect aquí
             return true;
         },
     },
