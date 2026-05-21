@@ -121,11 +121,15 @@ export async function authenticate(
             password: formData.get('password'),
         });
 
+        if (res?.error) {
+            return 'Invalid credentials.';
+        }
+
         if (res?.ok) {
             redirect('/dashboard');
         }
 
-
+        return 'Something went wrong.';
     } catch (error) {
         if (error instanceof AuthError) {
             switch (error.type) {
@@ -135,6 +139,7 @@ export async function authenticate(
                     return 'Something went wrong.';
             }
         }
+
         throw error;
     }
 }
