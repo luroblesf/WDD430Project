@@ -115,11 +115,7 @@ export async function authenticate(
     formData: FormData,
 ) {
     try {
-        await signIn('credentials', {
-            email: formData.get('email'),
-            password: formData.get('password'),
-            redirectTo: '/dashboard',
-        });
+        await signIn('credentials', formData);
     } catch (error) {
         if (error instanceof AuthError) {
             switch (error.type) {
@@ -129,7 +125,6 @@ export async function authenticate(
                     return 'Something went wrong.';
             }
         }
-
         throw error;
     }
 }
