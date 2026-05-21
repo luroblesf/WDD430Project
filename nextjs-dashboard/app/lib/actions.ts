@@ -125,7 +125,7 @@ export async function authenticate(
             redirect('/dashboard');
         }
 
-        return 'Invalid credentials.';
+
     } catch (error) {
         if (error instanceof AuthError) {
             switch (error.type) {
